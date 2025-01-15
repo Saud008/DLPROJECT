@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welding Prediction</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200vh;
+            margin: 0;
+            color: #fff;
+        }
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px 50px;
+            border-radius: 16px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(12px);
+        }
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: #e6e6e6;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="file"] {
+            padding: 10px;
+            background: #ffffff;
+            border: 1px solid #d1d1d1;
+            border-radius: 6px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        button {
+            background: linear-gradient(135deg, #6dd5ed, #2193b0);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(33, 147, 176, 0.5);
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #d1d1d1;
+        }
+        img {
+            margin-top: 20px;
+            max-width: 100%;
+            border-radius: 8px;
+        }
+        footer {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: #d1d1d1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welding Image Classification</h1>
+        <form action="/predict" method="post" enctype="multipart/form-data">
+            <label for="file">Upload a welding image:</label>
+            <input type="file" id="file" name="image" required>
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if result is not none %}
+            <div id="result">
+                <p><strong>Prediction Result:</strong> {{ result }}</p>
+            </div>
+            <div>
+                <h2>Uploaded Image:</h2>
+                <img src="{{ image_url }}" alt="Uploaded Image">
+            </div>
+        {% endif %}
+
+        <footer>Powered by Welding AI | © 2025</footer>
+    </div>
+</body>
+</html>
